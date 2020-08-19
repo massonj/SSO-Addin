@@ -6,12 +6,14 @@
 /* global console, location, Office */
 
 import * as sso from "office-addin-sso";
-import { writeDataToOfficeDocument } from "./../taskpane/components/App";
+//import { writeDataToOfficeDocument } from "./../taskpane/components/App";
 var loginDialog;
+var dataReceivedFn;
 
-export function dialogFallback() {
+export function dialogFallback( dataReceivedCallback: any) {
   // We fall back to Dialog API for any error.
   const url = "/fallbackauthdialog.html";
+  dataReceivedFn = dataReceivedCallback;
   showLoginPopup(url);
 }
 
@@ -24,8 +26,14 @@ async function processMessage(arg) {
   if (messageFromDialog.status === "success") {
     // We now have a valid access token.
     loginDialog.close();
+    console.log("About to make graph call")
     const response = await sso.makeGraphApiCall(messageFromDialog.result);
-    writeDataToOfficeDocument(response);
+    console.log(`response: ${ JSON.stringify(response)}`);
+    console.log(dataReceivedFn);
+    
+    dataReceivedFn( response);
+    console.log("back from setState");
+    //writeDataToOfficeDocument(response);
   } else {
     // Something went wrong with authentication or the authorization of the web application.
     loginDialog.close();

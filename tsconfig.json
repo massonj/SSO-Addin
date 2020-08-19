@@ -7,7 +7,7 @@
         "noEmitOnError": true,
         "outDir": "lib",
         "sourceMap": true,
-        "target": "es5",
+        "target": "es2015",
     //    "lib": [
     //        "es2015",
     //        "dom"
@@ -19,8 +19,8 @@
     //"outDir": "dist",
     "allowUnusedLabels": false,
     "noImplicitReturns": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
     "lib": [
       "es7",
       "dom"

@@ -8402,7 +8402,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 /* global console, localStorage, Office */
 
-var Msal = __webpack_require__(/*! msal */ "./node_modules/msal/lib-es6/index.js");
+const Msal = __webpack_require__(/*! msal */ "./node_modules/msal/lib-es6/index.js");
 
 Office.initialize = function () {
   if (Office.context.ui.messageParent) {
@@ -8426,7 +8426,7 @@ Office.initialize = function () {
   }
 };
 
-var msalConfig = {
+const msalConfig = {
   auth: {
     clientId: "63483ce1-539b-42c9-a984-fa7f327c1724",
     authority: "https://login.microsoftonline.com/common",
@@ -8440,9 +8440,9 @@ var msalConfig = {
   }
 };
 var requestObj = {
-  scopes: ["https://graph.microsoft.com/User.Read"]
+  scopes: [`https://graph.microsoft.com/User.Read`]
 };
-var userAgentApp = new Msal.UserAgentApplication(msalConfig);
+const userAgentApp = new Msal.UserAgentApplication(msalConfig);
 
 function authCallback(error, response) {
   if (error) {

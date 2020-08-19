@@ -14,14 +14,18 @@ export interface AppProps {
 
 export interface AppState {
   listItems: HeroListItem[];
+  userName: string;
 }
 
 export default class App extends React.Component<AppProps, AppState> {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      listItems: []
-    }; 
+      listItems: [],
+      userName: ""
+    };
+    this.click = this.click.bind(this) ;
+    this.onGraphDataReceived = this.onGraphDataReceived.bind(this);
   }
 
   componentDidMount() {
@@ -41,6 +45,7 @@ export default class App extends React.Component<AppProps, AppState> {
         }
       ]
     });
+    getGraphData( this.onGraphDataReceived);
   }
 
   click = async () => {
@@ -59,13 +64,16 @@ export default class App extends React.Component<AppProps, AppState> {
 
         await context.sync();
         console.log(`The range address was ${range.address}.`);
-        await getGraphData();
-
       });
     } catch (error) {
       console.error(error);
     }
   };
+
+  onGraphDataReceived(response:any) {
+    console.log(`On Graph Data Received, response: ${response}`);
+    this.setState( { userName: response["givenName"]});
+  }
 
   render() {
     const { title, isOfficeInitialized } = this.props;
@@ -78,7 +86,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
     return (
       <div className="ms-welcome">
-        <Header logo="assets/logo-filled.png" title={this.props.title} message="Welcome" />
+        <Header logo="assets/logo-filled.png" title={this.props.title} message= { "Welcome " + this.state.userName } />
         <HeroList message="Discover what Office Add-ins can do for you today!" items={this.state.listItems}>
           <p className="ms-font-l">
             Modify the source files, then click <b>Run</b>.

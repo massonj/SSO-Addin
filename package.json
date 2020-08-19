@@ -28,7 +28,6 @@
     "office-ui-fabric-react": "^7.128.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-hot-loader": "^4.12.21",
     "core-js": "^3.1.4",
     "es6-promise": "^4.2.8"
   },
