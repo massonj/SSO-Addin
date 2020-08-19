@@ -3,7 +3,7 @@
  * See LICENSE in the project root for license information.
  */
 
-/* global console, location, Office, Microsoft */
+/* global console, location, Office */
 
 import * as sso from "office-addin-sso";
 import { writeDataToOfficeDocument } from "./../taskpane/components/App";

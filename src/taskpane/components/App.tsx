@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import * as React from "react";
 import { Button, ButtonType } from "office-ui-fabric-react";
 import Header from "./Header";
 import HeroList, { HeroListItem } from "./HeroList";
 import Progress from "./Progress";
+import { getGraphData } from "../../helpers/ssoauthhelper";
 /* global Button, console, Excel, Header, HeroList, HeroListItem, Progress */
 
 export interface AppProps {
@@ -57,6 +59,8 @@ export default class App extends React.Component<AppProps, AppState> {
 
         await context.sync();
         console.log(`The range address was ${range.address}.`);
+        await getGraphData();
+
       });
     } catch (error) {
       console.error(error);
