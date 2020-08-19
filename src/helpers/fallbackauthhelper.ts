@@ -6,7 +6,7 @@
 /* global console, location, Office, Microsoft */
 
 import * as sso from "office-addin-sso";
-import { writeDataToOfficeDocument } from "./../taskpane/taskpane";
+import { writeDataToOfficeDocument } from "./../taskpane/components/App";
 var loginDialog;
 
 export function dialogFallback() {

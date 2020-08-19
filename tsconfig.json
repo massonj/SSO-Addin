@@ -8,10 +8,27 @@
         "outDir": "lib",
         "sourceMap": true,
         "target": "es5",
-        "lib": [
-            "es2015",
-            "dom"
-        ]
+    //    "lib": [
+    //        "es2015",
+    //        "dom"
+    //    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "removeComments": false,
+    //"outDir": "dist",
+    "allowUnusedLabels": false,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "lib": [
+      "es7",
+      "dom"
+    ],
+    "pretty": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
     },
     "exclude": [
         "node_modules",

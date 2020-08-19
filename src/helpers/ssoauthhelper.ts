@@ -6,7 +6,7 @@
 /* global OfficeRuntime */
 import { dialogFallback } from "./fallbackAuthHelper";
 import * as sso from "office-addin-sso";
-import { writeDataToOfficeDocument } from "./../taskpane/taskpane";
+import { writeDataToOfficeDocument } from "./../taskpane/components/App";
 let retryGetAccessToken = 0;
 
 export async function getGraphData(): Promise<void> {
