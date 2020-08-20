@@ -44,7 +44,7 @@ async function processMessage(arg) {
 // Use the Office dialog API to open a pop-up and display the sign-in page for the identity provider.
 function showLoginPopup(url) {
   var fullUrl = location.protocol + "//" + location.hostname + (location.port ? ":" + location.port : "") + url;
-
+  console.log(`full url for dialog: ${fullUrl}`);
   // height and width are percentages of the size of the parent Office application, e.g., PowerPoint, Excel, Word, etc.
   Office.context.ui.displayDialogAsync(
     fullUrl,
