@@ -26,9 +26,21 @@ export default class App extends React.Component<AppProps, AppState> {
     };
     this.click = this.click.bind(this) ;
     this.onGraphDataReceived = this.onGraphDataReceived.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
+    //register event handeler
+    Excel.run((context) => {
+      var worksheet = context.workbook.worksheets.getActiveWorksheet();
+      worksheet.onChanged.add(this.handleChange);
+  
+      return context.sync()
+        .then(function () {
+            console.log("Event handler successfully registered for onChanged event in the worksheet.");
+        });
+    });
+
     this.setState({
       listItems: [
         {
@@ -47,6 +59,19 @@ export default class App extends React.Component<AppProps, AppState> {
     });
     getGraphData( this.onGraphDataReceived);
   }
+ 
+handleChange = (event) =>
+{
+    console.log("in handleChange");
+    return Excel.run(function(context){
+        return context.sync()
+            .then(function() {
+                console.log("Change type of event: " + event.changeType);
+                console.log("Address of event: " + event.address);
+                console.log("Source of event: " + event.source);
+            });
+    }).catch((error) => { console.log(`caught error :${error}`)});
+}
 
   click = async () => {
     try {
